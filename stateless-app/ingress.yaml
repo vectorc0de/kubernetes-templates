@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-app-ingress
+  name: containerdevs-app-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     # cert-manager.io/cluster-issuer: "letsencrypt-prod" # Uncomment for cert-manager
@@ -9,14 +9,14 @@ spec:
   rules:
   - http:
       paths:
-      - path: /my-app
+      - path: /containerdevs-app
         pathType: Prefix
         backend:
           service:
-            name: my-app-service
+            name: containerdevs-app-service
             port:
               number: 80
   # tls:
   # - hosts:
-  #   - my-app.example.com
-  #   secretName: my-app-tls-secret # Managed by cert-manager or created manually
+  #   - containerdevs-app.example.com
+  #   secretName: containerdevs-app-tls-secret # Managed by cert-manager or created manually

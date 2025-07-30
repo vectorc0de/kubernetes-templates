@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: my-stateful-app
+  name: containerdevs-app
 spec:
   selector:
     matchLabels:
-      app: my-stateful-app # has to match .spec.template.metadata.labels
-  serviceName: "my-stateful-app-headless"
+      app: containerdevs-app # has to match .spec.template.metadata.labels
+  serviceName: "containerdevs-app-headless"
   replicas: 3 # by default is 1
   template:
     metadata:
       labels:
-        app: my-stateful-app # has to match .spec.selector.matchLabels
+        app: containerdevs-app # has to match .spec.selector.matchLabels
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: my-stateful-container
+      - name: containerdevs-app-container
         image: postgres:13 # Replace with your stateful image
         ports:
         - containerPort: 5432

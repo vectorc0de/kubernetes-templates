@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-stateful-app-headless
+  name: containerdevs-app-headless
 spec:
   clusterIP: None
   selector:
-    app: my-stateful-app
+    app: containerdevs-app
   ports:
     - protocol: TCP
       port: 5432
@@ -14,10 +14,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-stateful-app-service
+  name: containerdevs-app-service
 spec:
   selector:
-    app: my-stateful-app
+    app: containerdevs-app
   ports:
     - protocol: TCP
       port: 5432

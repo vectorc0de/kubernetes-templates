@@ -1,9 +1,9 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: my-stateful-app-pdb
+  name: containerdevs-app-pdb
 spec:
   minAvailable: 2
   selector:
     matchLabels:
-      app: my-stateful-app
+      app: containerdevs-app

@@ -11,5 +11,5 @@ spec:
           containers:
           - name: my-cron-container
             image: busybox # Replace with your cron job image
-            command: ["sh", "-c", "echo 'Hello from CronJob!' && date"]
+            command: ["sh", "-c", "echo 'test cronjob' && date"]
           restartPolicy: OnFailure
