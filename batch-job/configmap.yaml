@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-batch-job-configmap
+data:
+  JOB_PARAM_1: "value1"
+  JOB_PARAM_2: "value2"

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-app-configmap
+data:
+  # Environment-specific configuration
+  API_URL: "http://my-api-service:8080"
+  FEATURE_FLAGS: "new-feature-enabled"

@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: my-cron-job
+spec:
+  schedule: "*/1 * * * *" # Every minute
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: my-cron-container
+            image: busybox # Replace with your cron job image
+            command: ["sh", "-c", "echo 'Hello from CronJob!' && date"]
+          restartPolicy: OnFailure
