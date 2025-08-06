@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: containerdevs-ingress
+  namespace: containerdevs-namespace
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: "8m"
+
+    # Rate limiting
+    # nginx.ingress.kubernetes.io/limit-rps: "5" # Requests per second
+    # nginx.ingress.kubernetes.io/limit-rpm: "300" # Requests per minute
+
+    # TLS/SSL
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod" # For cert-manager with Let's Encrypt
+
+    # Security headers
+    # nginx.ingress.kubernetes.io/add-headers: "X-Content-Type-Options=nosniff, X-Frame-Options=SAMEORIGIN"
+
+spec:
+  rules:
+  - host: containerdevs.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: containerdevs-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - containerdevs.com
+    secretName: containerdevs-tls-secret
