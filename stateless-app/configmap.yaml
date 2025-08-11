@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: containerdevs-app-configmap
-data:
-  # Environment-specific configuration
-  API_URL: "http://containerdevs.com:8080"
-  FEATURE_FLAGS: "new-feature-enabled"

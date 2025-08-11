@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: containerdevs-app-pdb
+spec:
+  # (k drain?? ok min 2 pods plz)
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: containerdevs-app
