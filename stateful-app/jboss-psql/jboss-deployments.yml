@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: jboss-deployment
+  namespace: jboss-template
+  labels:
+    app: jboss
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jboss
+  template:
+    metadata:
+      labels:
+        app: jboss
+    spec:
+      containers:
+        - name: jboss
+          image: jboss/wildfly:26.1.0.Final
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: DB_SERVICE_HOST
+              value: "psql-template"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: "db_usr"
+            - name: DB_PASSWORD
+              value: "db_passwd"
+            - name: DB_NAME
+              value: "db_name"
+          volumeMounts:
+            - name: jboss-persistent-storage
+              mountPath: /opt/jboss/wildfly/standalone/data
+
+      volumes:
+        - name: jboss-persistent-storage
+          persistentVolumeClaim:
+            claimName: jboss-pvc

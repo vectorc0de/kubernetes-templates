@@ -5,18 +5,18 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: containerdevs-app # has to match .spec.template.metadata.labels
+      app: containerdevs-app
   serviceName: "containerdevs-app-headless"
-  replicas: 3 # by default is 1
+  replicas: 3
   template:
     metadata:
       labels:
-        app: containerdevs-app # has to match .spec.selector.matchLabels
+        app: containerdevs-app
     spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: containerdevs-app-container
-        image: postgres:13 # Replace with your stateful image
+        image: postgres:13
         ports:
         - containerPort: 5432
           name: db-port
@@ -28,7 +28,7 @@ spec:
       name: my-pvc
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "standard" # Make sure this storage class exists
+      storageClassName: "standard"
       resources:
         requests:
           storage: 1Gi
